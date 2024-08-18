@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Memória</title>
+    <!-- Adiciona a fonte Poppins do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             background-color: #fff;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif; /* Aplica a fonte Poppins */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
+            text-align: center; /* Centraliza o texto */
         }
 
-        h1 {
-            font-size: 150px; /* Aumentar o tamanho do título */
-            margin-bottom: 4rem; /* Aumentar o espaçamento abaixo do título */
+        /* Override de Tailwind para aumentar o tamanho do título */
+        .title {
+            font-size: 6rem; /* Ajusta o tamanho do título */
+            margin-bottom: 5rem; /* Espaçamento inferior */
+        }
+
+        #timer {
+            font-size: 3rem; /* Tamanho do cronômetro */
+            margin-bottom: 3rem;
         }
 
         .memory-game {
             display: grid;
-            grid-template-columns: repeat(4, 200px); /* Aumentar o tamanho das cartas e o número de colunas */
-            gap: 10px; /* Ajustar o espaço entre os cards */
+            grid-template-columns: repeat(4, 200px);
+            gap: 10px;
             justify-content: center;
             align-items: center;
         }
@@ -77,15 +86,17 @@
         }
 
         .memory-card.match {
-            background-color: #b0bec5; /* Cor cinza para cartas combinadas */
+            background-color: #b0bec5;
             cursor: default;
         }
     </style>
 </head>
 <body>
 
-    <h1>Jogo da Memória</h1>
+    <h1 class="title">Jogo da Memória</h1>
     
+    <div id="timer">40:00</div>
+
     <div class="memory-game">
         <div class="memory-card" data-card="1">
             <div class="memory-card-inner">
@@ -147,18 +158,6 @@
                 <div class="back-face"></div>
             </div>
         </div>
-        <div class="memory-card" data-card="6">
-            <div class="memory-card-inner">
-                <img src="F.jpg" alt="Card 6" class="front-face">
-                <div class="back-face"></div>
-            </div>
-        </div>
-        <div class="memory-card" data-card="6">
-            <div class="memory-card-inner">
-                <img src="F1.jpg" alt="Card 6" class="front-face">
-                <div class="back-face"></div>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -190,7 +189,7 @@
             if (isMatch) {
                 disableCards();
                 matches++;
-                if (matches === 6) {  // Número total de pares
+                if (matches === 5) {  // Número total de pares
                     setTimeout(() => {
                         window.location.href = 'vitoria.html';
                     }, 1000);
@@ -233,6 +232,23 @@
         })();
 
         cards.forEach(card => card.addEventListener('click', flipCard));
+
+        // Cronômetro
+        let timeLeft = 5 * 60; // 40 minutos em segundos
+        const timer = document.getElementById('timer');
+
+        const countdown = setInterval(() => {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            timer.textContent = `${minutes}:${seconds}`;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                clearInterval(countdown);
+                window.location.href = 'derrota.html';
+            }
+        }, 1000);
     </script>
 </body>
-  </html>
+</html>
