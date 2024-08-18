@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parabéns</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0e0e0e;
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .text {
+            text-align: center;
+            z-index: 1;
+            position: relative; /* Necessário para o posicionamento da personagem */
+        }
+
+        .text h1 {
+            font-size: 80px;
+            letter-spacing: 5px;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .text p {
+            font-size: 24px;
+            color: #6bff99;
+            margin: 20px 0;
+        }
+
+        .continue-button, .restart-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: transparent;
+            color: green;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border: 2px solid green; /* Adiciona borda verde para combinar com a cor do texto */
+            margin: 10px; /* Adiciona espaçamento entre os botões */
+        }
+
+        .continue-button:hover, .restart-button:hover {
+            background-color: greenyellow;
+            color: ;
+        }
+
+        .character {
+            position: absolute;
+            top: 40%; /* Ajuste o valor conforme necessário */
+            left: 95%; /* Ajuste o valor conforme necessário */
+            width: 300px; /* Ajuste o tamanho da personagem se necessário */
+            height: auto;
+            transform: translateX(-50%); /* Centraliza horizontalmente */
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="text">
+        <h1>VOCÊ PERDEU!</h1>
+        <p>Que pena parece que você não conseguiu completar essa fase</p>
+        <button class="continue-button">Continuar</button>
+        <a href="index.html" class="restart-button">Recomeçar</a> <!-- Botão de Recomeçar -->
+    </div>
+
+    <!-- Adiciona a personagem -->
+    <img src="b.png" alt="Character" class="character">
+</body>
+</html>
